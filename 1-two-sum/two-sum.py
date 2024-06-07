@@ -1,16 +1,10 @@
 class Solution(object):
     def twoSum(self, nums, target):
-        index = []
-
-        for i in range (0, len(nums)):
-            temp = target - nums[i]
-            if temp in nums:
-                check = nums.index(temp)
-                if i != check:
-                    index.append(i)
-                    index.append(check)
-                    break
-        return index
+        map = {}
+        for i,num in enumerate(nums):
+            if target - num in map:
+                return [map[target-num], i]
+            map[num] = i
 
                 
         
