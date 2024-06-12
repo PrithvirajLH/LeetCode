@@ -1,29 +1,19 @@
-class Solution(object):
-    def isValid(self, s):
-        stack = []
-        top=-1
-        for char in s:
-            if char == '(' or char == '{' or char == '[':
-                stack.append(char)
-                top += 1
-            elif top > -1:
-                if stack[top] == '(' and char == ')' :
-                    stack.pop(top)
-                    top -= 1
-                elif stack[top] == '{' and char == '}':
-                    stack.pop(top)
-                    top -= 1
-                elif stack[top] == '[' and char == ']':
-                    stack.pop(top)
+class Solution:
+    def isValid(self, s: str) -> bool:
+        top = -1
+        storage = []
+        entry = {')':'(', '}':'{', ']':'['}
+        for i in s:
+            if i in entry:
+                if storage and storage[top]==entry[i]:
+                    storage.pop(top)
                     top -= 1
                 else:
                     return False
-            else:
-                return False
-        if top == -1:
-            return True
-        else:
-            return False
+            elif i in '({[':
+                storage.append(i)
+                top += 1
+        return not storage
 
-        
+
         
