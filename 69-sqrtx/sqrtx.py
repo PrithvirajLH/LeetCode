@@ -2,8 +2,9 @@ class Solution:
     def mySqrt(self, x: int) -> int:
         if x == 0:
             return 0
-    
-        first = 1
+        if x == 1:
+            return 1
+        first = 0
         last = x
         while first <= last:
             mid = first + (last - first) // 2
