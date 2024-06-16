@@ -10,11 +10,11 @@ class Solution:
             temp = n % 10
             ans = ans * 10 + temp
             n = n // 10
-        a=pow(-2,31)
-        b =pow(2,31)
+        
+        
         if flag:
             ans *= -1
-        if ans > a and ans < b:
+        if ans > pow(-2,31) and ans < pow(2,31):
             return(ans)
         else:
             return(0)
