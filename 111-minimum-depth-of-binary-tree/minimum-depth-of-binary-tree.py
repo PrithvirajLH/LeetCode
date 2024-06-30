@@ -20,5 +20,5 @@ class Solution:
                 if node.right:
                     queue.append(node.right)
             depth += 1
-        return depth
+        # return depth
         
