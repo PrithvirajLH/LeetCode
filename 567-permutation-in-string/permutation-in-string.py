@@ -1,17 +1,24 @@
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        s1_map = Counter(s1)
-        n = len(s1)
-        for i in range(len(s2)):
-            if s2[i] in s1_map:
-                s1_map[s2[i]] -= 1
-            if i >= n and s2[i-n] in s1_map:
-                s1_map[s2[i-n]] += 1
+        if len(s1) > len(s2):
+            return False
+        
+        freq_s1 = [0] * 26
+        freq_s2 = [0] * 26
 
-            if all([s1_map[i] == 0 for i in s1_map]):
+        for i in range(len(s1)):
+            freq_s1[ord(s1[i]) - ord('a')] += 1
+            freq_s2[ord(s2[i]) - ord('a')] += 1
+
+        if freq_s1 == freq_s2:
+            return True
+        
+        for j in range(len(s1), len(s2)):
+            freq_s2[ord(s2[j]) - ord('a')] += 1
+            freq_s2[ord(s2[j - len(s1)]) - ord('a')] -= 1
+            if freq_s1 == freq_s2:
                 return True
-
-        return False 
+        return False
             
 
 
