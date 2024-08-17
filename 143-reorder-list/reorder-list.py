@@ -8,9 +8,6 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
-        if not head:
-            return head
-        
         slow = head
         fast = head
 
@@ -18,26 +15,19 @@ class Solution:
             slow = slow.next
             fast = fast.next.next
         
-        prev = None
         curr = slow
-        forw = None
+        prev = None
 
         while curr:
-            forw = curr.next
+            temp = curr.next
             curr.next = prev
             prev = curr
-            curr = forw
+            curr = temp
         
         first = head
         second = prev
-        temp = head
 
         while second.next:
-            temp = temp.next
-            first.next = second
-            second = second.next
-            first.next.next = temp
-            first = first.next.next
+            first.next, first = second, first.next
+            second.next, second = first, second.next
         
-        return head
-
