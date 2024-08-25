@@ -7,7 +7,7 @@
 class Solution:
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         ans = []
-        stack = [root]
+        stack =  [root]
         while stack:
             node = stack.pop()
             if node:
@@ -15,3 +15,5 @@ class Solution:
                 stack.append(node.left)
                 stack.append(node.right)
         return ans[::-1]
+
+        
