@@ -14,4 +14,12 @@ class Solution:
                     left = mid + 1
             ans.append(len(potions) - right - 1)
         return ans
-            
+
+        # ans = []
+        # for i in spells:
+        #     count = 0
+        #     for j in potions:
+        #         if i * j >= success:
+        #             count += 1
+        #     ans.append(count)            
+        # return ans
