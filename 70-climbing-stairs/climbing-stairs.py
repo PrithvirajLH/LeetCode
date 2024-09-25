@@ -1,14 +1,15 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        memo = {}
-        return self.fib(n,memo)
-    def fib(self, n:int, memo:dict[int,int]) -> int:
-        if n == 0 or n==1:
-            return 1
-        if n not in memo:
-            memo[n] = self.fib(n-1,memo) + self.fib(n-2,memo)
-        return memo[n]
+        if n <= 3:
+            return n
+        
+        n1, n2 = 2, 3
 
+        for i in range(4, n+1):
+            temp = n1 + n2
+            n1 = n2
+            n2 = temp
         
-        
+        return n2
+
         
