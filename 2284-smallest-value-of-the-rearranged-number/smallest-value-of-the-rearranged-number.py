@@ -22,7 +22,7 @@ class Solution:
         if num > 0:
             res = heapq.heappop(minheap)
             for _ in range(zero):
-                heapq.heappush(minheap, 0)
+                res = res * 10
         else:
             res = 0
         
@@ -31,7 +31,7 @@ class Solution:
             res += heapq.heappop(minheap)
         
         return res
-        
+
 
 
 
