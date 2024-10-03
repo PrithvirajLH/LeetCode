@@ -5,11 +5,11 @@ class Solution:
             slow = nums[slow]
             fast = nums[nums[fast]]
             if slow == fast:
-                break
+                fast = 0
+                while True:
+                    slow = nums[slow]
+                    fast = nums[fast]
+                    if slow == fast:
+                        return slow
+                
         
-        fast = 0
-        while True:
-            slow = nums[slow]
-            fast = nums[fast]
-            if slow == fast:
-                return slow
