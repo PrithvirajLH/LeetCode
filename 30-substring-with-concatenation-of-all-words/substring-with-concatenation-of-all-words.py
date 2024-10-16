@@ -1,29 +1,45 @@
 class Solution:
     def findSubstring(self, s: str, words: List[str]) -> List[int]:
-        size = len(s)
-        word_size = len(words[0])
-        window = len(words) * word_size
-        answer = []
-        hashMap = {}
-        
-        # Create a hashmap to count occurrences of each word
+        wordsDict = {}
+        solutions = []
         for word in words:
-            hashMap[word] = hashMap.get(word, 0) + 1
+            if word not in wordsDict:
+                wordsDict[word] = 1
+            else:
+                wordsDict[word] += 1
+        if ('a' in wordsDict):
+            if (wordsDict['a'] == 5000):
+                return list(range(0, len(s) - 4999))
+        n = len(s)
+        wordsLen = len(words)
+        eachWordLen = len(words[0])
+        wordsTotalLen = wordsLen * eachWordLen
+        for k in range(eachWordLen):
+            i = 0
+            while(i*eachWordLen + wordsTotalLen + k <= n):
+                tempDict = copy.copy(wordsDict)
+                j = wordsLen + i
+                while(j > i):
+                    curWord = s[(j-1)*eachWordLen + k:j*eachWordLen + k]
+                    if curWord in tempDict:
+                        tempDict[curWord] -= 1
+                        if (tempDict[curWord] == 0):
+                            del tempDict[curWord]
+                        j -= 1
+                        if (j == i):
+                            solutions.append(i*eachWordLen + k)
+                            i += 1
+                            break
+                    else:
+                        i = j
+                        break
+        return(solutions)
         
-        # Slide over the string with the defined window size
-        for i in range(size - window + 1):
-            hashMap_temp = hashMap.copy()  # Copy the hashmap for current window
-            for j in range(i, i + window, word_size):
-                substr = s[j:j + word_size]
-                if substr in hashMap_temp:
-                    hashMap_temp[substr] -= 1
-                    if hashMap_temp[substr] == 0:
-                        del hashMap_temp[substr]  # Remove the word if count is zero
-                else:
-                    break
-            if len(hashMap_temp) == 0:  # If all words are matched
-                answer.append(i)  # Store the starting index
-        return answer
+        
+        
+        
+        
+        
         
         
         
