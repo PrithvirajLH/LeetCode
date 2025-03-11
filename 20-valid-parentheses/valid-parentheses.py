@@ -1,19 +1,29 @@
 class Solution:
     def isValid(self, s: str) -> bool:
+        if len(s) < 2:
+            return False
+        stack = []
         top = -1
-        storage = []
-        entry = {')':'(', '}':'{', ']':'['}
         for i in s:
-            if i in entry:
-                if storage and storage[top]==entry[i]:
-                    storage.pop(top)
-                    top -= 1
+            if i in "({[":
+                stack.append(i)
+                top += 1
+            else:
+                if stack:
+                    if i == ")" and stack[top] == "(":
+                        stack.pop()
+                        top -= 1
+                    elif i == "}" and stack[top] == "{":
+                        stack.pop()
+                        top -= 1
+                    elif i == "]" and stack[top] == "[":
+                        stack.pop()
+                        top -= 1
+                    else:
+                        break
                 else:
                     return False
-            elif i in '({[':
-                storage.append(i)
-                top += 1
-        return not storage
+        return len(stack) == 0
 
 
         
