@@ -2,7 +2,7 @@ class Solution:
     def repairCars(self, ranks: List[int], cars: int) -> int:
 
         l = 1
-        r = ranks[0] * cars * cars
+        r = min(ranks) * cars * cars
         res = -1
 
         def calc_repaired_cars(time):
